@@ -1,0 +1,12 @@
+# AI tools
+.agents/
+.claude/
+.trellis/
+AGENTS.md
+
+# Notes
+*.txt
+
+# Old separate files (now inlined in index.html)
+script.js
+styles.css

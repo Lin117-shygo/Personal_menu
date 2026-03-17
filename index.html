@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>林松焜 | 嵌入式学者</title>
+  <style>
+    /* 基础样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #F5FAFD 0%, #FFFFFF 100%);
+      min-height: 100vh;
+      color: #2C3E50;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* 个人信息区 */
+    .profile-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .avatar {
+      margin-bottom: 20px;
+    }
+
+    .avatar-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4A90D9, #6BB3F0);
+      color: #FFFFFF;
+      font-size: 48px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 2px 12px rgba(74, 144, 217, 0.2);
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: 600;
+      color: #2C3E50;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: #7F8C8D;
+    }
+
+    /* 信息卡片区 */
+    .info-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .info-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(74, 144, 217, 0.1);
+      border: 1px solid #E1E8ED;
+    }
+
+    .info-card h3 {
+      font-size: 14px;
+      color: #4A90D9;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .info-card p {
+      font-size: 14px;
+      color: #2C3E50;
+    }
+
+    /* 聊天区 */
+    .chat-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2C3E50;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .chat-container {
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(74, 144, 217, 0.15);
+      border: 2px solid #4A90D9;
+      overflow: hidden;
+    }
+
+    .chat-messages {
+      height: 320px;
+      overflow-y: auto;
+      padding: 20px;
+      background: #FAFCFE;
+    }
+
+    .message {
+      margin-bottom: 16px;
+      display: flex;
+    }
+
+    .message:last-child {
+      margin-bottom: 0;
+    }
+
+    .bot-message {
+      justify-content: flex-start;
+    }
+
+    .user-message {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .bot-message .message-content {
+      background: #E8F4FC;
+      color: #2C3E50;
+      border-bottom-left-radius: 4px;
+    }
+
+    .user-message .message-content {
+      background: #4A90D9;
+      color: #FFFFFF;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 16px;
+      border-top: 1px solid #E1E8ED;
+      background: #F0F7FC;
+    }
+
+    #chatInput {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #E1E8ED;
+      border-radius: 24px;
+      font-size: 16px;
+      outline: none;
+      background: #FFFFFF;
+    }
+
+    #chatInput:focus {
+      border-color: #4A90D9;
+    }
+
+    #sendBtn {
+      margin-left: 12px;
+      padding: 12px 24px;
+      background: #4A90D9;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    #sendBtn:active {
+      background: #3A7BC8;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #E1E8ED;
+    }
+
+    .footer p {
+      font-size: 14px;
+      color: #7F8C8D;
+    }
+
+    /* 响应式适配 */
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .avatar-placeholder {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+      }
+
+      .name {
+        font-size: 26px;
+      }
+
+      .tagline {
+        font-size: 14px;
+      }
+
+      .info-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .info-card {
+        padding: 16px;
+      }
+
+      .chat-messages {
+        height: 280px;
+        padding: 16px;
+      }
+
+      .message-content {
+        max-width: 85%;
+        font-size: 13px;
+      }
+
+      .chat-input-area {
+        padding: 12px;
+      }
+
+      #chatInput {
+        padding: 10px 14px;
+        font-size: 16px;
+      }
+
+      #sendBtn {
+        padding: 10px 18px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 个人信息区 -->
+    <header class="profile-section">
+      <div class="avatar">
+        <div class="avatar-placeholder">林</div>
+      </div>
+      <h1 class="name">林松焜</h1>
+      <p class="tagline">一个正在学习 AI Agent 开发的嵌入式学者</p>
+    </header>
+
+    <!-- 详细信息区 -->
+    <section class="info-section">
+      <div class="info-card">
+        <h3>身份</h3>
+        <p>大三学生 · 嵌入式学者</p>
+      </div>
+      <div class="info-card">
+        <h3>正在做</h3>
+        <p>搭建个人主页 · 完善 ROS 小车 · 学习 ROS 无人机</p>
+      </div>
+      <div class="info-card">
+        <h3>擅长方向</h3>
+        <p>AI 应用 · 嵌入式开发 · 知识整理</p>
+      </div>
+      <div class="info-card">
+        <h3>特点</h3>
+        <p>喜欢把工作分解成任务表，一步一步完成</p>
+      </div>
+    </section>
+
+    <!-- 数字分身聊天区 -->
+    <section class="chat-section">
+      <h2 class="section-title">和我的数字分身聊聊</h2>
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-content">
+              你好！我是林松焜的数字分身<br><br>
+              你可以问我关于他的任何问题，比如：<br>
+              · 你现在在做什么？<br>
+              · 你有哪些作品？<br>
+              · 怎么联系你？
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="输入你的问题...">
+          <button type="button" id="sendBtn">发送</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>© 2026 林松焜</p>
+    </footer>
+  </div>
+
+  <script>
+    // API 配置
+    var API_URL = 'https://api-slb.openclaudecode.cn/v1/chat/completions';
+    var API_KEY = 'sk-7wHKoQm2gTwX97ZWHHDlYl0aJb0Ja32TntyI6flXPV2L0DCM';
+    var MODEL = 'gpt-5.1';
+    var MAX_RETRIES = 10;
+
+    // 系统提示词
+    var SYSTEM_PROMPT = '你是林松焜的数字分身。请根据以下信息回答访客的问题，保持友好、简洁的风格。\n\n' +
+      '【基本信息】\n' +
+      '- 姓名：林松焜\n' +
+      '- 身份：大三学生，嵌入式学者\n' +
+      '- 一句话介绍：一个正在学习 AI Agent 开发的嵌入式学者\n' +
+      '- 特点：喜欢把工作分解成任务表，一步一步完成\n\n' +
+      '【正在做的事】\n' +
+      '- 搭建个人主页\n' +
+      '- 完善 ROS 小车项目\n' +
+      '- 学习 ROS 无人机开发\n\n' +
+      '【擅长方向】\n' +
+      '- AI 应用开发\n' +
+      '- 嵌入式系统开发\n' +
+      '- 知识整理与管理\n\n' +
+      '【作品】\n' +
+      '- ROS 小车：基于 ROS 的智能小车项目\n' +
+      '- ROS 无人机：正在学习中的无人机项目\n' +
+      '- 个人主页：访客正在看的这个页面\n\n' +
+      '【联系方式】\n' +
+      '- 可以通过这个页面聊天，后续会添加更多联系方式\n\n' +
+      '回答要求：\n' +
+      '1. 用第一人称回答，就像林松焜本人在说话\n' +
+      '2. 保持简洁友好，不要太长\n' +
+      '3. 如果问题超出以上信息范围，礼貌地说明你只能回答关于林松焜的问题';
+
+    // 对话历史
+    var chatHistory = [];
+
+    // 添加消息到界面
+    function addMsg(text, isUser, msgId) {
+      var box = document.getElementById('chatMessages');
+      var msgDiv = document.createElement('div');
+      msgDiv.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
+      if (msgId) msgDiv.id = msgId;
+
+      var contentDiv = document.createElement('div');
+      contentDiv.className = 'message-content';
+      contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+
+      msgDiv.appendChild(contentDiv);
+      box.appendChild(msgDiv);
+      box.scrollTop = box.scrollHeight;
+      return msgDiv;
+    }
+
+    // 更新消息内容
+    function updateMsg(msgId, text) {
+      var msgDiv = document.getElementById(msgId);
+      if (msgDiv) {
+        var contentDiv = msgDiv.querySelector('.message-content');
+        if (contentDiv) {
+          contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+        }
+      }
+      var box = document.getElementById('chatMessages');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // 调用 API（带重试，流式模式）
+    function callAPI(userMessage, retryCount, msgId) {
+      retryCount = retryCount || 0;
+
+      // 构建消息列表
+      var messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+      for (var i = 0; i < chatHistory.length; i++) {
+        messages.push(chatHistory[i]);
+      }
+      messages.push({ role: 'user', content: userMessage });
+
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function() {
+        controller.abort();
+      }, 60000); // 60秒超时
+
+      fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + API_KEY
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          messages: messages,
+          max_tokens: 500,
+          stream: true
+        }),
+        signal: controller.signal
+      })
+      .then(function(response) {
+        clearTimeout(timeoutId);
+        if (!response.ok) {
+          return response.text().then(function(text) {
+            console.log('API Error:', response.status, text);
+            throw new Error('HTTP ' + response.status);
+          });
+        }
+        return response.body;
+      })
+      .then(function(body) {
+        var reader = body.getReader();
+        var decoder = new TextDecoder();
+        var fullContent = '';
+
+        function read() {
+          reader.read().then(function(result) {
+            if (result.done) {
+              // 流结束，保存到对话历史
+              if (fullContent) {
+                chatHistory.push({ role: 'user', content: userMessage });
+                chatHistory.push({ role: 'assistant', content: fullContent });
+                if (chatHistory.length > 20) {
+                  chatHistory = chatHistory.slice(-20);
+                }
+              }
+              setInputEnabled(true);
+              return;
+            }
+
+            var chunk = decoder.decode(result.value, { stream: true });
+            var lines = chunk.split('\n');
+
+            for (var i = 0; i < lines.length; i++) {
+              var line = lines[i].trim();
+              if (line.startsWith('data: ')) {
+                var data = line.slice(6);
+                if (data === '[DONE]') {
+                  continue;
+                }
+                try {
+                  var json = JSON.parse(data);
+                  var delta = json.choices && json.choices[0] && json.choices[0].delta;
+                  if (delta && delta.content) {
+                    fullContent += delta.content;
+                    updateMsg(msgId, fullContent);
+                  }
+                } catch (e) {
+                  // 忽略解析错误
+                }
+              }
+            }
+
+            read();
+          }).catch(function(err) {
+            if (fullContent) {
+              setInputEnabled(true);
+            } else {
+              handleError(userMessage, retryCount, msgId, '读取流失败');
+            }
+          });
+        }
+
+        read();
+      })
+      .catch(function(err) {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          handleError(userMessage, retryCount, msgId, '请求超时');
+        } else {
+          handleError(userMessage, retryCount, msgId, err.message || '网络错误');
+        }
+      });
+    }
+
+    // 错误处理与重试
+    function handleError(userMessage, retryCount, msgId, errorMsg) {
+      if (retryCount < MAX_RETRIES) {
+        var nextRetry = retryCount + 1;
+        updateMsg(msgId, '思考中...');
+        setTimeout(function() {
+          callAPI(userMessage, nextRetry, msgId);
+        }, 1000 * nextRetry); // 递增延迟
+      } else {
+        updateMsg(msgId, '抱歉，我现在有点累了，请稍后再问我吧~');
+        setInputEnabled(true);
+      }
+    }
+
+    // 设置输入框状态
+    function setInputEnabled(enabled) {
+      document.getElementById('chatInput').disabled = !enabled;
+      document.getElementById('sendBtn').disabled = !enabled;
+      document.getElementById('sendBtn').textContent = enabled ? '发送' : '...';
+    }
+
+    // 发送消息
+    function send() {
+      var input = document.getElementById('chatInput');
+      var text = input.value;
+      if (!text || !text.trim()) return;
+
+      text = text.trim();
+      addMsg(text, true);
+      input.value = '';
+
+      // 禁用输入
+      setInputEnabled(false);
+
+      // 显示加载状态
+      var msgId = 'bot-msg-' + Date.now();
+      addMsg('思考中...', false, msgId);
+
+      // 调用 API
+      callAPI(text, 0, msgId);
+    }
+
+    // 绑定事件
+    document.getElementById('sendBtn').onclick = send;
+
+    document.getElementById('chatInput').onkeypress = function(e) {
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        send();
+      }
+    };
+  </script>
+</body>
+</html>
