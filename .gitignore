@@ -4,9 +4,15 @@
 .trellis/
 AGENTS.md
 
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
 # Notes
 *.txt
 
-# Old separate files (now inlined in index.html)
-script.js
-styles.css
+# Old v0 files (root only, superseded by frontend/)
+/script.js
+/styles.css
