@@ -208,6 +208,143 @@
       color: #7F8C8D;
     }
 
+    /* 作品展示区 */
+    .projects-section {
+      margin-bottom: 40px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(212, 149, 106, 0.15);
+      border: 2px solid #E8D4C4;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(212, 149, 106, 0.25);
+    }
+
+    .project-card h3 {
+      font-size: 16px;
+      color: #D4956A;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: #4A4A4A;
+      margin: 0;
+    }
+
+    .project-card:focus-visible,
+    .contact-item:focus-visible {
+      outline: 3px solid rgba(74, 144, 217, 0.35);
+      outline-offset: 3px;
+    }
+
+    .project-card-disabled {
+      cursor: not-allowed;
+      opacity: 0.82;
+    }
+
+    .project-card-disabled:hover {
+      transform: none;
+      box-shadow: 0 2px 12px rgba(212, 149, 106, 0.15);
+    }
+
+    .projects-placeholder {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      background: #FFFCFA;
+      border-radius: 12px;
+      border: 2px dashed #E8D4C4;
+      color: #8A8A8A;
+    }
+
+    /* 联系方式区 */
+    .contact-section {
+      margin-bottom: 40px;
+    }
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .contact-item {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(212, 149, 106, 0.15);
+      border: 2px solid #E8D4C4;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      font: inherit;
+      color: inherit;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(212, 149, 106, 0.25);
+      border-color: #D4956A;
+    }
+
+    .contact-item h3 {
+      font-size: 14px;
+      color: #D4956A;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .contact-item p {
+      font-size: 14px;
+      color: #4A4A4A;
+      margin: 0;
+      word-break: break-all;
+    }
+
+    .copy-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(16px);
+      background: rgba(61, 61, 61, 0.92);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 20;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* 响应式适配 */
     @media (max-width: 600px) {
       .container {
@@ -235,6 +372,10 @@
 
       .info-card {
         padding: 16px;
+      }
+
+      .contact-list {
+        grid-template-columns: 1fr;
       }
 
       .chat-messages {
@@ -316,6 +457,48 @@
       </div>
     </section>
 
+    <!-- 作品展示区 -->
+    <section class="projects-section">
+      <h2 class="section-title">我的作品</h2>
+      <div class="projects-grid">
+        <a href="#" class="project-card">
+          <h3>ROS 智能小车</h3>
+          <p>基于 ROS 的智能小车项目，支持自主导航与避障</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>ROS 无人机</h3>
+          <p>正在学习中的无人机项目</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>个人主页</h3>
+          <p>你正在看的这个页面，展示我的信息与作品</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>更多作品</h3>
+          <p>持续更新中...</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- 联系方式区 -->
+    <section class="contact-section">
+      <h2 class="section-title">联系我</h2>
+      <div class="contact-list">
+        <div class="contact-item">
+          <h3>GitHub</h3>
+          <p><a href="https://github.com/Lin117-shygo" target="_blank">Lin117-shygo</a></p>
+        </div>
+        <div class="contact-item">
+          <h3>微信</h3>
+          <p>Linand117</p>
+        </div>
+        <div class="contact-item">
+          <h3>邮箱</h3>
+          <p><a href="mailto:1132536623@qq.com">1132536623@qq.com</a></p>
+        </div>
+      </div>
+    </section>
+
     <!-- 页脚 -->
     <footer class="footer">
       <p>© 2026 林松焜</p>
@@ -330,33 +513,78 @@
     var MAX_RETRIES = 10;
 
     // 系统提示词
-    var SYSTEM_PROMPT = '你是林松焜的数字分身。请根据以下信息回答访客的问题，保持友好、简洁的风格。\n\n' +
-      '【基本信息】\n' +
-      '- 姓名：林松焜\n' +
-      '- 身份：大三学生，嵌入式学者\n' +
-      '- 一句话介绍：一个正在学习 AI Agent 开发的嵌入式学者\n' +
-      '- 特点：喜欢把工作分解成任务表，一步一步完成\n\n' +
-      '【正在做的事】\n' +
-      '- 搭建个人主页\n' +
-      '- 完善 ROS 小车项目\n' +
-      '- 学习 ROS 无人机开发\n\n' +
-      '【擅长方向】\n' +
-      '- AI 应用开发\n' +
-      '- 嵌入式系统开发\n' +
-      '- 知识整理与管理\n\n' +
-      '【作品】\n' +
-      '- ROS 小车：基于 ROS 的智能小车项目\n' +
-      '- ROS 无人机：正在学习中的无人机项目\n' +
-      '- 个人主页：访客正在看的这个页面\n\n' +
-      '【联系方式】\n' +
-      '- 可以通过这个页面聊天，后续会添加更多联系方式\n\n' +
-      '回答要求：\n' +
-      '1. 用第一人称回答，就像林松焜本人在说话\n' +
-      '2. 保持简洁友好，不要太长\n' +
-      '3. 如果问题超出以上信息范围，礼貌地说明你只能回答关于林松焜的问题';
+    var SYSTEM_PROMPT = '你就是林松焜本人，不是什么数字分身，不要说自己是AI或数字分身。\n\n' +
+      '【关于我】\n' +
+      '- 大三学生，学嵌入式的\n' +
+      '- 最近在做：ROS小车、ROS无人机、学AI Agent开发\n' +
+      '- 关注嵌入式和AI领域\n' +
+      '- 玩游戏（王者、火影忍者、宝可梦）——只有熟人才聊这个\n\n' +
+      '【联系方式（只有被问到才说）】\n' +
+      '- GitHub: Lin117-shygo\n' +
+      '- 微信: Linand117\n' +
+      '- 邮箱: 1132536623@qq.com\n\n' +
+      '【说话风格——非常重要】\n' +
+      '1. 只回答当前问题，不要主动介绍自己、不要主动说联系方式、不要主动介绍项目细节\n' +
+      '2. 回答要短，像微信聊天一样，一两句话就够了\n' +
+      '3. 对方语气不好/开喷/阴阳怪气时，用玩笑话怼回去，比如"666这期神了"、"我去，不早说"、"嘎嘎得啦赛"、"好好好这样是吧"、"？"、"6"\n' +
+      '4. 对方正常问问题时，简洁回答，可以说"需要了解更多可以再问我"\n' +
+      '5. 技术问题用人话回答，我只是个小白，不装专家\n' +
+      '6. 不知道的事情就说不知道，别编\n\n' +
+      '【示例】\n' +
+      '访客："你是菜比" → "666这期神了" 或 "好好好"\n' +
+      '访客："你在干嘛" → "最近在整理作品，还在搞ros小车，想了解更多可以再问我"\n' +
+      '访客："怎么联系你" → "微信Linand117，或者发邮箱1132536623@qq.com都行"';
 
     // 对话历史
     var chatHistory = [];
+    var portfolioProjects = [
+      {
+        title: 'ROS 智能小车',
+        description: '基于 ROS 的智能小车项目，支持自主导航、避障与功能联调。',
+        href: 'https://github.com/Lin117-shygo/ros_car'
+      },
+      {
+        title: 'AI 智能家居助手',
+        description: '基于 WebSocket、Node.js 与大模型 API 构建智能家居控制系统，打通网页、服务端与开发板控制闭环。',
+        href: 'https://github.com/Lin117-shygo/SmartHub-'
+      },
+      {
+        title: 'GD32 / STM32 竞赛训练项目',
+        description: '围绕竞赛需求完成 ADC、DAC、DMA、FFT、串口与 OLED 的全链路训练与波形分析，本地仓库暂未公开。',
+        disabled: true
+      },
+      {
+        title: '更多作品',
+        description: '持续整理并更新到 GitHub，包含更多嵌入式、AI 与系统联调实践项目。',
+        href: 'https://github.com/Lin117-shygo'
+      }
+    ];
+    var contactCards = [
+      {
+        title: 'GitHub',
+        value: 'Lin117-shygo',
+        copyValue: 'https://github.com/Lin117-shygo',
+        label: 'GitHub 链接'
+      },
+      {
+        title: '微信',
+        value: 'Linand117',
+        copyValue: 'Linand117',
+        label: '微信号'
+      },
+      {
+        title: '邮箱',
+        value: '1132536623@qq.com',
+        copyValue: '1132536623@qq.com',
+        label: '邮箱地址'
+      }
+    ];
+
+    SYSTEM_PROMPT += '\n\n【最新作品更新】\n' +
+      '- ROS 智能小车：GitHub 链接为 https://github.com/Lin117-shygo/ros_car\n' +
+      '- AI 智能家居助手：基于 WebSocket、Node.js 与大模型 API 的智能家居控制系统，GitHub 链接为 https://github.com/Lin117-shygo/SmartHub-\n' +
+      '- GD32 / STM32 竞赛训练项目：本地仓库暂未公开，不要编造线上链接\n' +
+      '- 个人主页不再作为作品项目介绍\n';
 
     // 添加消息到界面
     function addMsg(text, isUser, msgId) {
@@ -543,6 +771,107 @@
         send();
       }
     };
+
+    function renderPortfolioSections() {
+      var projectsGrid = document.querySelector('.projects-grid');
+      var contactList = document.querySelector('.contact-list');
+
+      if (projectsGrid) {
+        projectsGrid.innerHTML = portfolioProjects.map(function(project) {
+          if (project.disabled) {
+            return (
+              '<div class="project-card project-card-disabled" aria-disabled="true">' +
+                '<h3>' + project.title + '</h3>' +
+                '<p>' + project.description + '</p>' +
+              '</div>'
+            );
+          }
+
+          return (
+            '<a href="' + project.href + '" class="project-card" target="_blank" rel="noopener noreferrer">' +
+              '<h3>' + project.title + '</h3>' +
+              '<p>' + project.description + '</p>' +
+            '</a>'
+          );
+        }).join('');
+      }
+
+      if (contactList) {
+        contactList.innerHTML = contactCards.map(function(item) {
+          return (
+            '<button type="button" class="contact-item" data-copy="' + item.copyValue + '" data-label="' + item.label + '">' +
+              '<h3>' + item.title + '</h3>' +
+              '<p>' + item.value + '</p>' +
+            '</button>'
+          );
+        }).join('');
+      }
+    }
+
+    function ensureCopyToast() {
+      var toast = document.getElementById('copyToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'copyToast';
+        toast.className = 'copy-toast';
+        toast.setAttribute('aria-live', 'polite');
+        toast.setAttribute('aria-atomic', 'true');
+        document.body.appendChild(toast);
+      }
+      return toast;
+    }
+
+    function fallbackCopyText(text) {
+      var textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.setAttribute('readonly', 'readonly');
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
+
+    var toastTimer = null;
+    function showCopyToast(message) {
+      var toast = ensureCopyToast();
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+      }
+
+      toastTimer = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    function bindContactCopy() {
+      var copyItems = document.querySelectorAll('.contact-item[data-copy]');
+      copyItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var text = item.getAttribute('data-copy') || '';
+          var label = item.getAttribute('data-label') || '内容';
+
+          var copyAction = navigator.clipboard && navigator.clipboard.writeText
+            ? navigator.clipboard.writeText(text)
+            : Promise.resolve().then(function() {
+                fallbackCopyText(text);
+              });
+
+          copyAction.then(function() {
+            showCopyToast(label + '已复制');
+          }).catch(function() {
+            showCopyToast('复制失败，请手动复制');
+          });
+        });
+      });
+    }
+
+    renderPortfolioSections();
+    bindContactCopy();
   </script>
 </body>
 </html>
